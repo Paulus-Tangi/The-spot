@@ -3,7 +3,8 @@ A simple learner marketplace that separates the seller and buyer experience.
 
 ## Pages
 
-- `index.html` — home page with links to the seller and buyer pages
+- `welcome.html` — welcome page that introduces the marketplace
+- `index.html` — main page with links to the welcome, seller, and buyer pages
 - `seller.html` — seller page to list second-hand items
 - `buyer.html` — buyer page to browse available items
 - `styles.css` — page styling
