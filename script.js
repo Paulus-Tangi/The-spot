@@ -13,6 +13,10 @@ function saveItems(items) {
 }
 
 function renderItems() {
+  if (!itemList) {
+    return;
+  }
+
   const items = loadItems();
   itemList.innerHTML = '';
 
@@ -24,7 +28,7 @@ function renderItems() {
     return;
   }
 
-  items.forEach((item, index) => {
+  items.forEach((item) => {
     const card = document.createElement('article');
     card.className = 'item-card';
 
@@ -51,30 +55,32 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
-itemForm.addEventListener('submit', (event) => {
-  event.preventDefault();
+if (itemForm) {
+  itemForm.addEventListener('submit', (event) => {
+    event.preventDefault();
 
-  const formData = new FormData(itemForm);
-  const newItem = {
-    title: formData.get('title').trim(),
-    description: formData.get('description').trim(),
-    price: Number(formData.get('price')).toFixed(2),
-    condition: formData.get('condition'),
-    contact: formData.get('contact').trim(),
-    createdAt: new Date().toISOString(),
-  };
+    const formData = new FormData(itemForm);
+    const newItem = {
+      title: formData.get('title').trim(),
+      description: formData.get('description').trim(),
+      price: Number(formData.get('price')).toFixed(2),
+      condition: formData.get('condition'),
+      contact: formData.get('contact').trim(),
+      createdAt: new Date().toISOString(),
+    };
 
-  if (!newItem.title || !newItem.description || !newItem.contact) {
-    return;
-  }
+    if (!newItem.title || !newItem.description || !newItem.contact) {
+      return;
+    }
 
-  const items = loadItems();
-  items.unshift(newItem);
-  saveItems(items);
-  renderItems();
+    const items = loadItems();
+    items.unshift(newItem);
+    saveItems(items);
+    renderItems();
 
-  itemForm.reset();
-  itemForm.querySelector('input, textarea').focus();
-});
+    itemForm.reset();
+    itemForm.querySelector('input, textarea').focus();
+  });
+}
 
 renderItems();
