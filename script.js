@@ -1,7 +1,13 @@
 const itemForm = document.getElementById('itemForm');
 const itemList = document.getElementById('itemList');
+const loginForm = document.getElementById('loginForm');
+const userStatus = document.getElementById('userStatus');
+const logoutButton = document.getElementById('logoutButton');
+const loginRequired = document.getElementById('loginRequired');
+const pageContent = document.getElementById('pageContent');
 
 const STORAGE_KEY = 'theSpotItems';
+const USER_KEY = 'theSpotUser';
 
 function loadItems() {
   const rawData = localStorage.getItem(STORAGE_KEY);
@@ -55,6 +61,98 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
+function loadUser() {
+  const raw = localStorage.getItem(USER_KEY);
+  return raw ? JSON.parse(raw) : null;
+}
+
+function saveUser(user) {
+  localStorage.setItem(USER_KEY, JSON.stringify(user));
+}
+
+function clearUser() {
+  localStorage.removeItem(USER_KEY);
+}
+
+function formatUser(user) {
+  if (!user) return 'Not signed in';
+  return `${user.name ? `${user.name} ` : ''}(#${user.studentNumber})`;
+}
+
+function renderUserStatus() {
+  if (!userStatus) return;
+  const user = loadUser();
+
+  if (user) {
+    userStatus.textContent = `Signed in as ${formatUser(user)}`;
+    userStatus.classList.remove('hidden');
+  } else {
+    userStatus.classList.add('hidden');
+  }
+
+  if (logoutButton) {
+    logoutButton.classList.toggle('hidden', !user);
+  }
+}
+
+function requireLogin() {
+  const user = loadUser();
+  if (!user && loginRequired) {
+    loginRequired.classList.remove('hidden');
+  }
+  if (!user && pageContent) {
+    pageContent.classList.add('hidden');
+  }
+}
+
+function fillSellerContact() {
+  const user = loadUser();
+  if (!user) return;
+
+  const contactInput = document.getElementById('contact');
+  if (contactInput) {
+    contactInput.value = `Student #${user.studentNumber}`;
+    contactInput.readOnly = true;
+  }
+}
+
+if (loginForm) {
+  loginForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(loginForm);
+    const studentNumber = formData.get('studentNumber').trim();
+    const name = formData.get('studentName').trim();
+
+    if (!studentNumber || !/^[0-9]+$/.test(studentNumber)) {
+      alert('Please enter a valid student number using only digits.');
+      return;
+    }
+
+    saveUser({
+      studentNumber,
+      name,
+      createdAt: new Date().toISOString(),
+    });
+
+    renderUserStatus();
+    alert('Account created. Now you can visit the seller or buyer page.');
+  });
+}
+
+if (logoutButton) {
+  logoutButton.addEventListener('click', () => {
+    clearUser();
+    renderUserStatus();
+    if (pageContent) {
+      pageContent.classList.add('hidden');
+    }
+    if (loginRequired) {
+      loginRequired.classList.remove('hidden');
+    }
+  });
+}
+
 if (itemForm) {
   itemForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -83,4 +181,7 @@ if (itemForm) {
   });
 }
 
+renderUserStatus();
+requireLogin();
+fillSellerContact();
 renderItems();

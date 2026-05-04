@@ -16,16 +16,26 @@
 
   <main class="container">
     <section class="page-links card">
-      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="welcome.html">Welcome</a>
       <a class="nav-link" href="seller.html">Go to Seller Page</a>
+      <span id="userStatus" class="user-panel mini hidden"></span>
+      <button id="logoutButton" class="nav-link nav-logout hidden">Log out</button>
     </section>
 
-    <section class="card listings-card">
+    <section id="loginRequired" class="card hidden">
+      <h2>Account required</h2>
+      <p>To browse and buy items, first create an account using your student number on the Welcome page.</p>
+      <a class="nav-link" href="welcome.html">Go to Welcome</a>
+    </section>
+
+    <section id="pageContent">
+      <section class="card listings-card">
       <h2>Available Items</h2>
       <div id="itemList" class="item-list">
         <p class="empty-state">No items listed yet. Ask a seller to add the first one!</p>
       </div>
     </section>
+  </section>
   </main>
 
   <footer>

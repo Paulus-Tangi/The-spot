@@ -17,11 +17,26 @@
   <main class="container">
     <section class="card home-card">
       <h2>Start Here</h2>
-      <p>Choose whether you want to list an item or browse what other learners are selling.</p>
+      <p>Use your student number to create an account before buying or selling.</p>
+
+      <form id="loginForm" class="login-form">
+        <label for="studentNumber">Student number</label>
+        <input type="text" id="studentNumber" name="studentNumber" pattern="[0-9]+" placeholder="e.g. 12345678" required>
+
+        <label for="studentName">Your full name</label>
+        <input type="text" id="studentName" name="studentName" placeholder="Optional">
+
+        <button type="submit">Create account / Sign in</button>
+        <p class="hint">Your student number is used to access the seller and buyer pages.</p>
+      </form>
+
+      <div id="userStatus" class="user-panel hidden"></div>
+      <button id="logoutButton" class="home-button home-button-tertiary hidden">Log out</button>
+
       <div class="home-links">
-        <a class="home-button" href="index.html">Go to Marketplace</a>
-        <a class="home-button home-button-secondary" href="seller.html">List an Item</a>
-        <a class="home-button" href="buyer.html">Browse Items</a>
+        <a class="home-button" href="seller.html">Seller Page</a>
+        <a class="home-button" href="buyer.html">Buyer Page</a>
+        <a class="home-button home-button-secondary" href="index.html">Marketplace Home</a>
       </div>
     </section>
   </main>
@@ -31,5 +46,7 @@
       <p>Made for learners to sell and buy second-hand items.</p>
     </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

@@ -12,9 +12,11 @@ A simple learner marketplace that separates the seller and buyer experience.
 
 ## How to use
 
-1. Open `index.html` in your browser.
-2. Click **Seller Page** to list an item for sale.
-3. Click **Buyer Page** to view the items that learners have posted.
+1. Open `welcome.html` in your browser.
+2. Create an account using your student number.
+3. Click **Seller Page** to list an item for sale or **Buyer Page** to browse available items.
+
+> Note: You must sign in with a student number before using the seller or buyer pages.
 
 ## Data storage
 

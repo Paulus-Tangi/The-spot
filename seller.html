@@ -16,13 +16,22 @@
 
   <main class="container">
     <section class="page-links card">
-      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="welcome.html">Welcome</a>
       <a class="nav-link" href="buyer.html">Go to Buyer Page</a>
+      <span id="userStatus" class="user-panel mini hidden"></span>
+      <button id="logoutButton" class="nav-link nav-logout hidden">Log out</button>
     </section>
 
-    <section class="card form-card">
-      <h2>List an Item for Sale</h2>
-      <form id="itemForm">
+    <section id="loginRequired" class="card hidden">
+      <h2>Account required</h2>
+      <p>To sell items, first create an account using your student number on the Welcome page.</p>
+      <a class="nav-link" href="welcome.html">Go to Welcome</a>
+    </section>
+
+    <section id="pageContent">
+      <section class="card form-card">
+        <h2>List an Item for Sale</h2>
+        <form id="itemForm">
         <label for="title">Item name</label>
         <input type="text" id="title" name="title" placeholder="e.g. Textbook, laptop, backpack" required>
 
@@ -41,11 +50,12 @@
         </select>
 
         <label for="contact">Contact info</label>
-        <input type="text" id="contact" name="contact" placeholder="e.g. email, phone or classroom" required>
+        <input type="text" id="contact" name="contact" placeholder="Student account will fill this" required>
 
         <button type="submit">Post Item</button>
       </form>
     </section>
+  </section>
   </main>
 
   <footer>

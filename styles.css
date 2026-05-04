@@ -167,7 +167,48 @@ footer {
 .home-button-secondary {
   background: #10b981;
 }
+.home-button-tertiary {
+  background: #f97316;
+}
 
+.user-panel {
+  display: inline-flex;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  margin-top: 1rem;
+  border-radius: 0.85rem;
+  background: #e0f2fe;
+  color: #0f172a;
+}
+
+.user-panel.mini {
+  padding: 0.6rem 0.9rem;
+  margin-top: 0;
+  margin-left: auto;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.login-form .hint {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.nav-logout {
+  display: inline-flex;
+  padding: 0.75rem 1rem;
+  border-radius: 0.85rem;
+  color: white;
+  background: #ef4444;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
 .nav-link:hover,
 .home-button:hover {
   opacity: 0.95;
